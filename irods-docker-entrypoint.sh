@@ -42,6 +42,7 @@ generate_config() {
 }
 
 if [[ "$1" = 'setup_irods.sh' ]]; then
+    # Configure PostgreSQL
     set_postgres_params
     ./postgres-docker-entrypoint.sh postgres &
     sleep 10s
@@ -49,7 +50,7 @@ if [[ "$1" = 'setup_irods.sh' ]]; then
     # Generate iRODS config file
     generate_config
 
-    # Setup irods user account
+    # Setup iRODS
     if [[ "$1" = 'setup_irods.sh' ]] && [[ "$#" -eq 1 ]]; then
         # Configure with environment variables
         gosu root /var/lib/irods/packaging/setup_irods.sh < ${IRODS_CONFIG_FILE}
@@ -58,8 +59,8 @@ if [[ "$1" = 'setup_irods.sh' ]]; then
         gosu root /var/lib/irods/packaging/setup_irods.sh < ${IRODS_CONFIG_FILE}
     fi
 
-    echo "### Time to hang out and do a bunch of nothing!! ###"
     # Keep container alive
+    echo "### iRODS is now running ###"
     tail -f /dev/null
 else
     set_postgres_params

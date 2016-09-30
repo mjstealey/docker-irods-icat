@@ -6,6 +6,7 @@ RUN groupadd -r irods --gid=998 \
     && useradd -r -g irods -d /var/lib/irods --uid=998 irods \
     && mv /docker-entrypoint.sh /postgres-docker-entrypoint.sh
 
+# Install gosu
 ENV GOSU_VERSION 1.9
 RUN set -x \
     && apt-get update && apt-get install -y --no-install-recommends ca-certificates wget && rm -rf /var/lib/apt/lists/* \
@@ -34,6 +35,7 @@ RUN apt-get update && apt-get install -y \
     odbc-postgresql \
     super
 
+# Install iRODS v.4.1.9
 RUN curl ftp://ftp.renci.org/pub/irods/releases/4.1.9/ubuntu14/irods-icat-4.1.9-ubuntu14-x86_64.deb -o irods-icat.deb \
     && curl ftp://ftp.renci.org/pub/irods/releases/4.1.9/ubuntu14/irods-database-plugin-postgres-1.9-ubuntu14-x86_64.deb -o irods-database.deb \
     && sudo dpkg -i irods-icat.deb irods-database.deb \
@@ -61,11 +63,10 @@ ENV IRODS_DATABASE_NAME=ICAT
 ENV IRODS_DATABASE_USER_NAME=irods
 ENV IRODS_DATABASE_PASSWORD=irods
 
-VOLUME /var/lib/irods/iRODS/Vault
+VOLUME ["/var/lib/irods/iRODS/Vault" "/var/lib/postgresql/data"]
 COPY irods-docker-entrypoint.sh /
-#COPY irods-config.template /
 
-EXPOSE 1247 5432
+EXPOSE $IRODS_PORT $IRODS_CONTROL_PLANE_PORT $IRODS_PORT_RANGE_BEGIN-$IRODS_PORT_RANGE_END
 ENTRYPOINT ["/irods-docker-entrypoint.sh"]
 
 CMD ["setup_irods.sh"]
