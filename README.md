@@ -1,18 +1,22 @@
 # docker-irods-icat
 Docker implementation of iRODS v.4.1.9 iCAT server using PostgreSQL 9.4
 
-### Pull from dockerhub
+## Supported tags and respective Dockerfile links
 
-Docker image is kept at dockerhub
+- 4.1.9, latest ([4.1.9/Dockerfile](https://github.com/mjstealey/docker-irods-icat/blob/master/4.1.9/Dockerfile))
+- 4.1.8 ([4.1.8/Dockerfile](https://github.com/mjstealey/docker-irods-icat/blob/master/4.1.8/Dockerfile))
+
+### Pull image from dockerhub
+
 ```bash
-docker pull mjstealey/docker-irods-icat
+docker pull mjstealey/docker-irods-icat:4.1.9
 ```
 
 ### Usage:
 
 **Example 1.** Deploy with default configuration
 ```bash
-docker run --name icat mjstealey/docker-irods-icat
+docker run --name icat mjstealey/docker-irods-icat:latest
 ```
 This call can also be daemonized with the **-d** flag, which would most likely be used in an actual environment.
 
@@ -58,7 +62,7 @@ Use the **docker exec** call to at the terminal interact with the container. Add
 
 **Example 2.** Use an environment file to pass the required environment variables for the iRODS `setup_irods.sh` call.
 ```bash
-$ docker run --env-file sample-env-file.env --name icat mjstealey/docker-irods-icat
+$ docker run --env-file sample-env-file.env --name icat mjstealey/docker-irods-icat:4.1.9
 ```
 - Using sample environment file named `sample-env-file.env` (Update as required for your iRODS installation)
 
@@ -115,7 +119,7 @@ $ docker run \
   -v /LOCAL_POSTGRES:/var/lib/postgresql/data \
   -v /LOCAL_IRODS:/var/lib/irods/iRODS/Vault \
   --name icat \
-  mjstealey/docker-irods-icat
+  mjstealey/docker-irods-icat:4.1.9
 ```
 
 Using a local directory named `/mydata` for postgres data and another local directory `/myvault` for the iRODS vault with  our setup configuration in the  **sample-env.env** file we would run this.
@@ -125,7 +129,7 @@ $ docker run \
   -v /myvault:/var/lib/irods/iRODS/Vault \
   --env-file sample-env-file.env \
   --name icat \
-  mjstealey/docker-irods-icat
+  mjstealey/docker-irods-icat:4.1.9
 ```
 On completion a running container named **icat** is spawned with the configuration as defined in the  **sample-env.env** file and if we were to look in the local `/mydata` and `myvault` directories we would see the following.
 
