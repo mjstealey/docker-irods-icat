@@ -1,10 +1,11 @@
 # docker-irods-icat
-Docker implementation of iRODS v.4.1.9 iCAT server using PostgreSQL 9.4
+Docker implementation of iRODS iCAT Server using PostgreSQL 9.4
 
 ## Supported tags and respective Dockerfile links
 
 - 4.1.9, latest ([4.1.9/Dockerfile](https://github.com/mjstealey/docker-irods-icat/blob/master/4.1.9/Dockerfile))
 - 4.1.8 ([4.1.8/Dockerfile](https://github.com/mjstealey/docker-irods-icat/blob/master/4.1.8/Dockerfile))
+- 4.1.7 ([4.1.7/Dockerfile](https://github.com/mjstealey/docker-irods-icat/blob/master/4.1.7/Dockerfile))
 
 ### Pull image from dockerhub
 
