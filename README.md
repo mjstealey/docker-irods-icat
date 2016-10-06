@@ -7,6 +7,10 @@ Docker implementation of iRODS iCAT Server using PostgreSQL 9.4
 - 4.1.8 ([4.1.8/Dockerfile](https://github.com/mjstealey/docker-irods-icat/blob/master/4.1.8/Dockerfile))
 - 4.1.7 ([4.1.7/Dockerfile](https://github.com/mjstealey/docker-irods-icat/blob/master/4.1.7/Dockerfile))
 
+### Docker image
+
+[![](https://images.microbadger.com/badges/image/mjstealey/docker-irods-icat.svg)](https://microbadger.com/images/mjstealey/docker-irods-icat "Get your own image badge on microbadger.com")
+
 ### Pull image from dockerhub
 
 ```bash
