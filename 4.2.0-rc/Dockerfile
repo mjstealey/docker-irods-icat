@@ -56,8 +56,12 @@ ENV IRODS_DATABASE_USER_NAME=irods
 ENV IRODS_DATABASE_PASSWORD=irods
 ENV IRODS_DATABASE_USER_PASSWORD_SALT=irods
 
-VOLUME ["/var/lib/irods/iRODS/Vault" "/var/lib/postgresql/data"]
-COPY irods-docker-entrypoint.sh /
+# Shenanigans to make dockerhub happy
+COPY . /tmp
+RUN cp /tmp/irods-docker-entrypoint.sh /irods-docker-entrypoint.sh \
+    && rm -rf /tmp/*
+
+VOLUME /var/lib/irods/iRODS/Vault /etc/irods /var/lib/postgresql/data
 
 EXPOSE $IRODS_PORT $IRODS_CONTROL_PLANE_PORT $IRODS_PORT_RANGE_BEGIN-$IRODS_PORT_RANGE_END
 ENTRYPOINT ["/irods-docker-entrypoint.sh"]
