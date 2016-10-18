@@ -33,7 +33,8 @@ RUN apt-get update && apt-get install -y \
     python-jsonschema \
     unixodbc \
     odbc-postgresql \
-    super
+    super \
+    jq
 
 # Install iRODS v.4.1.9
 RUN curl ftp://ftp.renci.org/pub/irods/releases/4.1.9/ubuntu14/irods-icat-4.1.9-ubuntu14-x86_64.deb -o irods-icat.deb \
