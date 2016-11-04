@@ -3,7 +3,8 @@ Docker implementation of iRODS iCAT Server using PostgreSQL 9.4
 
 ## Supported tags and respective Dockerfile links
 
-- 4.1.9, latest ([4.1.9/Dockerfile](https://github.com/mjstealey/docker-irods-icat/blob/master/4.1.9/Dockerfile))
+- 4.1.10, latest ([4.1.10/Dockerfile](https://github.com/mjstealey/docker-irods-icat/blob/master/4.1.10/Dockerfile))
+- 4.1.9 ([4.1.9/Dockerfile](https://github.com/mjstealey/docker-irods-icat/blob/master/4.1.9/Dockerfile))
 - 4.1.8 ([4.1.8/Dockerfile](https://github.com/mjstealey/docker-irods-icat/blob/master/4.1.8/Dockerfile))
 - 4.1.7 ([4.1.7/Dockerfile](https://github.com/mjstealey/docker-irods-icat/blob/master/4.1.7/Dockerfile))
 
@@ -16,7 +17,7 @@ Docker implementation of iRODS iCAT Server using PostgreSQL 9.4
 ### Pull image from dockerhub
 
 ```bash
-docker pull mjstealey/docker-irods-icat:4.1.9
+docker pull mjstealey/docker-irods-icat:latest
 ```
 
 ### Usage:
@@ -69,7 +70,7 @@ Use the **docker exec** call to at the terminal interact with the container. Add
 
 **Example 2.** Use an environment file to pass the required environment variables for the iRODS `setup_irods.sh` call.
 ```bash
-$ docker run --env-file sample-env-file.env --name icat mjstealey/docker-irods-icat:4.1.9
+$ docker run --env-file sample-env-file.env --name icat mjstealey/docker-irods-icat:latest
 ```
 - Using sample environment file named `sample-env-file.env` (Update as required for your iRODS installation)
 
@@ -126,7 +127,7 @@ $ docker run \
   -v /LOCAL_POSTGRES:/var/lib/postgresql/data \
   -v /LOCAL_IRODS:/var/lib/irods/iRODS/Vault \
   --name icat \
-  mjstealey/docker-irods-icat:4.1.9
+  mjstealey/docker-irods-icat:latest
 ```
 
 Using a local directory named `/mydata` for postgres data and another local directory `/myvault` for the iRODS vault with  our setup configuration in the  **sample-env.env** file we would run this.
@@ -136,7 +137,7 @@ $ docker run \
   -v /myvault:/var/lib/irods/iRODS/Vault \
   --env-file sample-env-file.env \
   --name icat \
-  mjstealey/docker-irods-icat:4.1.9
+  mjstealey/docker-irods-icat:latest
 ```
 On completion a running container named **icat** is spawned with the configuration as defined in the  **sample-env.env** file and if we were to look in the local `/mydata` and `myvault` directories we would see the following.
 
