@@ -38,9 +38,9 @@ RUN apt-get update && apt-get install -y \
     super \
     jq
 
-# Install iRODS v.4.1.7
-RUN curl ftp://ftp.renci.org/pub/irods/releases/4.1.7/ubuntu14/irods-icat-4.1.7-ubuntu14-x86_64.deb -o irods-icat.deb \
-    && curl ftp://ftp.renci.org/pub/irods/releases/4.1.7/ubuntu14/irods-database-plugin-postgres-1.7-ubuntu14-x86_64.deb -o irods-database.deb \
+# Install iRODS v.4.1.10
+RUN curl ftp://ftp.renci.org/pub/irods/releases/4.1.10/ubuntu14/irods-icat-4.1.10-ubuntu14-x86_64.deb -o irods-icat.deb \
+    && curl ftp://ftp.renci.org/pub/irods/releases/4.1.10/ubuntu14/irods-database-plugin-postgres-1.10-ubuntu14-x86_64.deb -o irods-database.deb \
     && sudo dpkg -i irods-icat.deb irods-database.deb \
     && sudo apt-get -f install \
     && rm irods-icat.deb irods-database.deb
