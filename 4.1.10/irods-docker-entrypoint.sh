@@ -42,6 +42,18 @@ generate_config() {
 }
 
 if [[ "$1" = 'setup_irods.sh' ]]; then
+    # Set ADD_IRODS_TO_GROUP
+    if [[ ! -z "$ADD_IRODS_TO_GROUP" ]]; then
+        gosu root groupadd --gid ${ADD_IRODS_TO_GROUP} irodsshare
+        gosu root usermod -a -G ${ADD_IRODS_TO_GROUP} irods
+    fi
+    # Set ADD_POSTGRES_TO_GROUP
+    if [[ ! -z "$ADD_POSTGRES_TO_GROUP" ]]; then
+        if [[ "$ADD_POSTGRES_TO_GROUP" != "$ADD_IRODS_TO_GROUP" ]]; then
+            gosu root groupadd --gid ${ADD_POSTGRES_TO_GROUP} postgresshare
+        fi
+        gosu root usermod -a -G ${ADD_POSTGRES_TO_GROUP} postgres
+    fi
     # Configure PostgreSQL
     set_postgres_params
     ./postgres-docker-entrypoint.sh postgres &
